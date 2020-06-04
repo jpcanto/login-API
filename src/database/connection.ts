@@ -9,3 +9,5 @@ const connection = knex({
 });
 
 export default connection;
+
+// (Knex) migrations é o histórico do DB; Permite a montagem de uma tabela em diferentes workspaces.
