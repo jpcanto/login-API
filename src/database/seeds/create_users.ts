@@ -4,7 +4,7 @@ import Knex from 'knex';
 export async function seed(knex: Knex) {
     await knex('users').insert([
         {
-            id: 1,
+            id: 11111,
             name: 'name_exemple',
             email: 'email_exemple',
             password: 'password_exemple',
