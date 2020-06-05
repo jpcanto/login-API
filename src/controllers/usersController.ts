@@ -25,7 +25,7 @@ class UsersController {
 
         return response.json({ ...user });
     };
-    async show(request: Request, response: Response) {
+    async index(request: Request, response: Response) {
         const users = await knex('users').select('*');
         // knex equivalente á: "SELECT * FROM users" de sql language
         return response.json(users);
