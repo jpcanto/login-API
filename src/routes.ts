@@ -1,7 +1,9 @@
 import express from 'express';
 import knex from './database/connection';
+import UsersController from './controllers/usersController';
 
 const routes = express.Router();
+const usersController = new UsersController();
 
 routes.get('/users', async (request, response) => {
     const users = await knex('users').select('*');
@@ -9,27 +11,6 @@ routes.get('/users', async (request, response) => {
     return response.json(users);
 });
 
-routes.post('/users', async (request, response) => {
-    // Desestruturação js, modelo de escrita com a(s) variáveis do lado esquerdo da atribuição entre chaves, seria igual a fazer const name = request.body.name
-    const {
-        name,
-        email,
-        password,
-        image,
-        games,
-        characters
-    } = request.body;
-    // Quando o nome da váriavel é igual a key, podemos deixar sem atribuição de valor.
-    await knex('users').insert({
-        name,
-        email,
-        password,
-        image,
-        games,
-        characters
-    });
-
-    return response.json({ succes: true });
-});
+routes.post('/users', usersController.create);
 
 export default routes;
