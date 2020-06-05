@@ -23,7 +23,7 @@ class UsersController {
         };
         await knex('users').insert(user);
 
-        return response.json({ succes: true });
+        return response.json({ ...user });
     };
 };
 
