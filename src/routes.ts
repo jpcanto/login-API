@@ -5,11 +5,7 @@ import UsersController from './controllers/usersController';
 const routes = express.Router();
 const usersController = new UsersController();
 
-routes.get('/users', async (request, response) => {
-    const users = await knex('users').select('*');
-    // knex equivalente á: "SELECT * FROM users" de sql language
-    return response.json(users);
-});
+routes.get('/users', usersController.show);
 
 routes.post('/users', usersController.create);
 
