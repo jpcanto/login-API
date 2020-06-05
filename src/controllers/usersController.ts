@@ -29,6 +29,14 @@ class UsersController {
         const users = await knex('users').select('*');
         // knex equivalente á: "SELECT * FROM users" de sql language
         return response.json(users);
+    };
+    async show(request: Request, response: Response) {
+        // desestruturação js, sem a desestruturação ficaria const id = request.params.id
+        const { id } = request.params;
+        const user = await knex('users').where('id', id).first();
+
+        if (!user) return response.status(400).json({ message: 'User not found.' });
+        return response.json(user);
     }
 };
 
