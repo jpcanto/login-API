@@ -34,8 +34,10 @@ class UsersController {
         // desestruturação js, sem a desestruturação ficaria const id = request.params.id
         const { name, password } = request.params;
         const user = await knex('users').where('name', name).where('password', password).first();
+        const userName = await knex('users').where('name', name).first();
 
-        if (!user) return response.status(400).json({ message: 'User not found.' });
+        if (!userName) return response.status(400).json({ message: 'User not found.' });
+        if (!user) return response.status(400).json({ message: 'Wrong password.' });
         return response.json(user);
     }
 };
